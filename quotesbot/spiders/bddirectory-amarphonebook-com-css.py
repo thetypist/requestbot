@@ -4,17 +4,19 @@ import scrapy
 
 
 class ToScrapeCSSSpider(scrapy.Spider):
-    name = "toscrape-css"
+    name = "amarphonebook-com-css"
     start_urls = [
         'http://quotes.toscrape.com/',
     ]
 
     def parse(self, response):
-        for quote in response.css("div.quote"):
+        for quote in response.css("div.list_common1"):
             yield {
-                'text': quote.css("span.text::text").extract_first(),
-                'author': quote.css("small.author::text").extract_first(),
-                'tags': quote.css("div.tags > a.tag::text").extract()
+                'title': quote.css("p.detailstitle::text").extract_first(),
+                'phone': quote.css("p.detailsphone::text").extract(),
+                'address': quote.css("p.detailsaddress::text").extract(),
+                'category': quote.css("p.detailscategory::text").extract(),
+                
             }
 
         next_page_url = response.css("li.next > a::attr(href)").extract_first()
