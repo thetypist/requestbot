@@ -12,10 +12,10 @@ class ToScrapeCSSSpider(scrapy.Spider):
     def parse(self, response):
         for quote in response.css("div.list_common1"):
             yield {
-                'title': quote.css("p.detailstitle::text").extract_first(),
+                'title': quote.css("p.detailstitle::text").extract(),
                 'phone': quote.css("p.detailsphone::text").extract(),
                 'address': quote.css("p.detailsaddress::text").extract(),
-                'category': quote.css("p.detailscategory::text").extract(),
+                'category': quote.css("p.detailscategory > i::text").extract(),
                 
             }
 
