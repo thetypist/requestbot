@@ -6,7 +6,7 @@ import scrapy
 class ToScrapeCSSSpider(scrapy.Spider):
     name = "amarphonebook-com-css"
     start_urls = [
-        'http://quotes.toscrape.com/',
+        'http://www.amarphonebook.com/list/Dhaka/All-Groceries/1/1113',
     ]
 
     def parse(self, response):
